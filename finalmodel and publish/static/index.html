@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>钓鱼网站检测模型</title>
+</head>
+<body>
+    <h1>判断结果</h1>
+    <form id="predictForm">
+        <label for="url">输入待检测的URL:</label>
+        <input type="text" id="url" name="url" required>
+        <input type="submit" value="开始检测">
+    </form>
+
+    <script>
+        document.getElementById('predictForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+
+            const url = document.getElementById('url').value;
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    url: url
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('预测结果: ' + data.prediction);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred.');
+            });
+        });
+    </script>
+</body>
+</html>
