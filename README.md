@@ -1,2 +1,1 @@
-# Phishing-detector-through-cloudcomputing
- 
+模型训练使用了天翼云，最终训练出来的模型保存在publish文件夹中的pth文件中，可以通过torch包读取调用参数
